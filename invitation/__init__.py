@@ -1,11 +1,13 @@
 from django.conf import settings
 from django.contrib.sites.models import RequestSite
 from django.contrib.sites.models import Site
+from django.http import HttpResponseForbidden
+import datetime
 
 from registration import signals
-from registration.backends.invitation.forms import RegistrationFormInvitationCode
+from forms import RegistrationFormInvitationCode
 from registration.models import RegistrationProfile
-from registration.backends.invitation.models import InvitationCode
+from models import InvitationCode
 
 
 class InvitationBackend(object):
@@ -55,7 +57,7 @@ class InvitationBackend(object):
             invitation_code.save()
         except InvitationCode.DoesNotExist:
             # TODO: This should be handled differently
-            return NotImplementedError
+            return HttpResponseForbidden('This invitation code does not exist! Check that it was entered correctly.')
 
         signals.user_registered.send(sender=self.__class__,
                                      user=new_user,

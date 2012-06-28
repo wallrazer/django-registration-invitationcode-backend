@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-from registration.backends.invitation.models import InvitationCode
+from models import InvitationCode
 
 
 class InvitationCodeAdmin(admin.ModelAdmin):

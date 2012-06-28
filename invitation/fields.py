@@ -1,6 +1,6 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from registration.backends.invitation.models import InvitationCode
+from models import InvitationCode
 
 
 class InvitationCodeField(forms.CharField):

@@ -22,11 +22,11 @@ urlpatterns = patterns('',
     # confusing 404.
     url(r'^activate/(?P<activation_key>\w+)/$',
         activate,
-        {'backend': 'registration.backends.invitation.InvitationBackend' },
+        {'backend': 'invitation.InvitationBackend' },
         name='registration_activate'),
     url(r'^register/$',
         register,
-        {'backend': 'registration.backends.invitation.InvitationBackend'},
+        {'backend': 'invitation.InvitationBackend'},
         name='registration_register'),
 
     url(r'^register/complete/$',

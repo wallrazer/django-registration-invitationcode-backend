@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from registration.forms import RegistrationFormUniqueEmail
-from registration.backends.invitation.fields import InvitationCodeField
+from fields import InvitationCodeField
 
 attrs_dict = {'class': 'required'}
 

@@ -9,39 +9,41 @@ Features of backend:
 * requires TOS (Terms of Service) accepted by user.
 
 Invitation codes are useful for e.g. service beta testing.
-Also, since backend is fully compatibile with default backend, when your service is going public and you decide not to use invitation codes, all you need to do is turn "default" backend on.
+Also, since the invitation code backend is fully compatible with default backend, when your service is going public and you decide not to use invitation codes, all you need to do is disable the "invitation" backend.
 
 Installation
 ------------
 
-1. Copy invitation directory contents to your django-registration backends - such as registration/backends/invitation/
+1. Download the source code and run `python setup.py install` from the django-registration-invitecode-backend directory.
 
-2. In settings.py INSTALLED_APPS section add 'registration.backends.invitation' after 'registration'::
+2. In settings.py INSTALLED_APPS section add 'invitation' after 'registration'::
 
     INSTALLED_APPS = (
         'registration',
-        'registration.backends.invitation',
+        'invitation',
     )
 
-3. You must change your urls.py where you are invoking registration (check project main urls.py)::
+3. Modify your main, or application, urls.py to use the invitation app urls.py::
 
-    (r'^accounts/', include('registration.backends.invitation.urls'), ),
+    (r'^accounts/', include('invitation.urls'), ),
 
 4. Run syncdb or south schemamigration if you use it::
 
     ./manage.py syncdb
 
+
 Invitation code
 ---------------
 
-Application created InvitationCode model for codes. Invitation codes can be anything you want - here there are 5 random characters.
+Application created InvitationCode model for codes. Invitation codes can be anything you want (up to 256 chars) - here there are 5 random characters.
 
 InvitationCode model also stores information about who and when used specific code so you can track it.
+
 
 Sample invitation code generation
 ---------------------------------
 
-You can make invitation code as long as you want (change max_length in InvitationCode model if you want it to be longer than 5).
+You can make invitation code as long as you want, up to 256 chars.
 
 Sample code for generation::
 
@@ -66,6 +68,6 @@ To create new translation simply run::
 Requirements
 ------------
 
-* `django-registration`_
+* `django-registration`
 
 .. _django-registration: http://bitbucket.org/ubernostrum/django-registration/

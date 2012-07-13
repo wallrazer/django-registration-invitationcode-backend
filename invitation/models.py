@@ -7,7 +7,7 @@ import string
 
 class InvitationCode(models.Model):
     """Invitation code model"""
-    code = models.CharField(blank=True, max_length=256, unique=True,
+    code = models.CharField(blank=True, max_length=255, unique=True,
         verbose_name=_(u"Invitation code"))
     is_used = models.BooleanField(default=False,
         verbose_name=_(u"Is code used?"))
